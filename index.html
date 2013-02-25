@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+	    <meta name="description" content="" />
+	    <meta name="author" content="Bryan Allred" />
+
+    	<title>Clean SQL String</title>
+		<link href="http://plus.google.com/112949321083048638287" rel="publisher" />
+		
+		<style type="text/css">
+			#browser
+			{
+				visibility: hidden;
+				display: none;
+			}
+
+			.scribble
+			{
+				padding: 1em;
+				width: 69em;
+				height: 15em;
+			}
+
+			#bottom
+			{
+
+			}
+		</style>
+
+		<!--[if lt IE 9]>
+		<style type="text/css">
+			#browser
+			{
+				display: block;
+				visibility: visible;
+			}
+		</style>
+		<![endif]-->
+	</head>
+	<body>
+			<!-- Warning to upgrade the browser -->
+		<div id="browser">
+			<h2>Dude, you are missing are the cool stuff!</h2>
+			<p>We recommend upgrading to the latest <a href="http://ie.microsoft.com" title="Microsoft Internet Explorer">Internet Explorer</a>, <a href="http://chrome.google.com" title="Google Chrome">Google Chrome</a>, or <a href="http://mozilla.org/firefox" title="Firefox">Firefox</a>. If you are using IE 9 or later, make sure you turn off "Compatibility View".</p>
+		</div>
+		<a href="https://github.com/bmallred/cleansqlstring"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+
+		<h2>Dirty, filthy, ugly text</h2>
+		<textarea id="top" class="scribble"></textarea>
+
+		<h2>Clean, fresh, purty text</h2>
+		<textarea id="bottom" class="scribble" readonly></textarea>
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script>
+			$(function () {
+				function scrub() {
+					var originalText = $("#top").val();
+					var modifiedText = originalText.replace(/'/g, "''");
+					$("#bottom").val(modifiedText);
+				}
+
+				$(document).on("change", "#top", function () {
+					scrub();
+				});
+				$(document).on("keyup", "#top", function () {
+					scrub();
+				});
+
+				$(document).on("focus", "#bottom", function () {
+					$(this).select();
+				})
+
+				$(document).on("mouseup", "#bottom", function() {
+			        $(this).unbind("mouseup");
+			        return false;
+			    });
+			})
+		</script>
+	</body>
+</html>
